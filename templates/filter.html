@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Filter Phytochemicals</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      background-color: #f9f9f9;
+    }
+    h2 {
+      color: #2e7d32;
+    }
+    select, button {
+      padding: 10px;
+      margin: 10px 10px 20px 0;
+      font-size: 1em;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background-color: #e0f2f1;
+    }
+  </style>
+</head>
+<body>
+  <h2>Filter Phytochemicals</h2>
+
+  <label for="plantPart">Plant Part:</label>
+  <select id="plantPart">
+    <option value="">--Select--</option>
+    <option value="Leaf">Leaf</option>
+    <option value="Root">Root</option>
+    <option value="Stem">Stem</option>
+    <option value="Flower">Flower</option>
+    <option value="Fruit">Fruit</option>
+  </select>
+
+  <label for="country">Country:</label>
+  <select id="country">
+    <option value="">--Select--</option>
+    <option value="India">India</option>
+    <option value="USA">USA</option>
+    <option value="China">China</option>
+    <option value="Brazil">Brazil</option>
+    <option value="Nigeria">Nigeria</option>
+  </select>
+
+  <button onclick="downloadCSV()">Download CSV</button>
+
+
+  <table id="resultsTable" style="display:none;">
+    <thead>
+      <tr>
+        <th>Compound</th>
+        <th>Plant</th>
+        <th>Part</th>
+        <th>Country</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <script>
+    let lastFilter = { plantPart: "", country: "" }; // Store last filters
+  
+    async function applyFilter() {
+      const plantPart = document.getElementById("plantPart").value;
+      const country = document.getElementById("country").value;
+  
+      lastFilter = { plantPart, country }; // Save filters
+  
+      const response = await fetch('/api/filter', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(lastFilter)
+      });
+  
+      const data = await response.json();
+  
+      const table = document.getElementById("resultsTable");
+      const tbody = table.querySelector("tbody");
+      tbody.innerHTML = "";
+  
+      if (data.length === 0) {
+        table.style.display = "none";
+        alert("No results found.");
+        return;
+      }
+  
+      data.forEach(entry => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+          <td>${entry.compound}</td>
+          <td>${entry.plant}</td>
+          <td>${entry.part}</td>
+          <td>${entry.country}</td>
+        `;
+        tbody.appendChild(row);
+      });
+  
+      table.style.display = "table";
+    }
+  
+    function downloadCSV() {
+      const params = new URLSearchParams(lastFilter);
+      window.location.href = `/download_csv?${params.toString()}`;
+    }
+  </script>
+  
+</body>
+</html>

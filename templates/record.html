@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Phytochemical Record Details</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      margin: 0;
+      padding: 30px;
+    }
+    h2 {
+      color: #2e7d32;
+    }
+    .record-container {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      max-width: 800px;
+      margin: auto;
+    }
+    .field {
+      margin: 10px 0;
+    }
+    .label {
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="record-container">
+    <h2>Phytochemical Record Details</h2>
+    <div id="recordDetails"></div>
+  </div>
+
+  <script>
+    async function loadRecord() {
+      const urlParts = window.location.pathname.split('/');
+      const recordId = urlParts[urlParts.length - 1];
+
+      const response = await fetch(`/api/record/${recordId}`);
+      const data = await response.json();
+
+      const container = document.getElementById("recordDetails");
+      container.innerHTML = "";
+
+      for (const [key, value] of Object.entries(data)) {
+        const field = document.createElement("div");
+        field.className = "field";
+        field.innerHTML = `<span class="label">${key}:</span> ${value}`;
+        container.appendChild(field);
+      }
+    }
+
+    loadRecord();
+  </script>
+</body>
+</html>

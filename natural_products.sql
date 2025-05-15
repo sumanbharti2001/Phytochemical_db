@@ -1,0 +1,1 @@
+SELECT * FROM natural_products_db.`demo data`;

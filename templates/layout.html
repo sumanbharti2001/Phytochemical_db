@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Phytochemical Database</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        /* Adjust the overall body to fix the margin and set a nature-inspired green background */
+        body {
+            background-color: #4CAF50; /* A plant-based green background (forest green) */
+            color: white;
+            margin: 0; /* No extra space around the body */
+            padding: 0; /* Ensures no extra padding */
+        }
+
+        /* Container to ensure no space on left or right */
+        .container {
+            margin-top: 20px;
+            padding: 20px;
+            max-width: 100%; /* Ensures the content takes up the full width */
+            margin-left: 0; /* No left margin */
+            margin-right: 0; /* No right margin */
+        }
+
+        /* Change font color of the title to white */
+        h1 {
+            color: #ffffff; /* White color for the title */
+            font-size: 3rem; /* Make the title slightly larger */
+        }
+
+        /* Styling for navigation links */
+        nav a {
+            color: #ffffff; /* White color for links */
+            text-decoration: none;
+            margin-right: 15px;
+            font-size: 1.1rem; /* Slightly larger font size for better visibility */
+        }
+
+        /* Hover effect for links */
+        nav a:hover {
+            color: #f0f0f0; /* Light white hover color */
+        }
+
+        /* Style for the search button */
+        .btn-primary {
+            background-color: white; /* White background */
+            color: #4CAF50; /* Green text */
+            border-color: #4CAF50; /* Green border to match text */
+        }
+
+        /* Hover effect for the search button */
+        .btn-primary:hover {
+            background-color: #76C7A6; /* Lighter green on hover */
+            color: white; /* White text when hovered */
+            border-color: #76C7A6; /* Light green border on hover */
+        }
+
+        /* Adjust the layout of the container */
+        .container-fluid {
+            padding-left: 0;
+            padding-right: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <h1>Phytochemical Database</h1>
+        <nav>
+            <a href="/">Home</a> |
+            <a href="/search">Search</a>
+        </nav>
+        <hr>
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

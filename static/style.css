@@ -1,0 +1,129 @@
+/* GLOBAL STYLES */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right top, #e8f5e9, #e0f7fa);
+    color: #2e3a59;
+    overflow-x: hidden;
+}
+
+/* NAVBAR */
+.navbar {
+    background: rgba(0, 77, 64, 0.9);
+    padding: 18px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .logo {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: 1px;
+    text-shadow: 1px 2px 3px rgba(0, 0, 0, 0.3);
+}
+
+.navbar a {
+    color: #ffffff;
+    text-decoration: none;
+    margin-left: 30px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.navbar a::after {
+    content: "";
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background-color: #a7ffeb;
+    transition: width 0.3s;
+}
+
+.navbar a:hover::after {
+    width: 100%;
+}
+
+/* HERO CONTAINER */
+.container {
+    max-width: 1000px;
+    margin: 140px auto 60px auto;
+    padding: 50px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease;
+}
+
+.container:hover {
+    transform: translateY(-5px);
+}
+
+/* HEADLINE TEXT */
+h1 {
+    font-size: 3.2rem;
+    margin-bottom: 20px;
+    color: #007f5f;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+/* DESCRIPTION */
+p {
+    font-size: 1.25rem;
+    line-height: 1.8;
+    color: #4a4a4a;
+    margin-bottom: 40px;
+}
+
+/* BUTTONS */
+.btn {
+    display: inline-block;
+    padding: 14px 28px;
+    margin: 12px;
+    background: linear-gradient(to right, #38b000, #007f5f);
+    color: #ffffff;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+    border: none;
+}
+
+.btn:hover {
+    transform: scale(1.05) translateY(-3px);
+    background: linear-gradient(to right, #007f5f, #38b000);
+}
+
+/* PAGE SECTIONS */
+.homepage, .aboutpage {
+    min-height: 100vh;
+    padding-top: 120px;
+}
+
+/* FOOTER */
+footer {
+    background-color: #e0f2f1;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 0.9rem;
+    color: #555;
+    margin-top: 40px;
+}
